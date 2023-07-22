@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     {
         printf("*****Welcome to the shortest path finder!******\n");
         help();
-        printf("Where do you want to go today? what do i do? ");
+        printf("Where do you want to go today? what do i do? "); 
 
         char command[30];
         scanf("%s", command);
