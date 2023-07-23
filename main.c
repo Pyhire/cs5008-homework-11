@@ -7,10 +7,10 @@
 void help()
 {
     printf("Commands: \n");
-    printf(" list - list all cities)\n");
-    printf(" <city1> <city2> - find the shortest path between two cities\n");
-    printf(" help - print this help message\n");
-    printf(" exit - exit the program\n");
+    printf("\tlist - list all cities)\n");
+    printf("\t<city1> <city2> - find the shortest path between two cities\n");
+    printf("\thelp - print this help message\n");
+    printf("\texit - exit the program\n");
     printf("*******************************************************\n");
 }
 /**
@@ -21,45 +21,67 @@ void help()
  */
 int main(int argc, char *argv[])
 {
-    char city1[20], city2[20];
-
     if (argc != 3)
     {
         printf("Usage: ./map.out <vertices> <distances>\n");
         exit(0);
     }
 
+    // Create the Graph
+    Graph *graph = createGraph();
+
+    // Load cities and distances data from files
+    loadCities(graph, argv[1]);
+    loadDistances(graph, argv[2]);
+
+    // print the graph for debugging
+    // printGraph(graph);
+
+    char city2[50];
+    printf("*****Welcome to the shortest path finder!******\n");
     while (1)
     {
-        printf("*****Welcome to the shortest path finder!******\n");
         help();
-        printf("Where do you want to go today? what do i do? "); 
+        printf("Where do you want to go today? what do i do? ");
 
-        char command[30];
+        char command[100];
         scanf("%s", command);
 
         if (strcmp(command, "list") == 0)
         {
-            printf("Open command\n");
+            printf("list\n");
+            listCities(graph);
         }
         else if (strcmp(command, "help") == 0)
         {
-            help();
+            continue;
         }
         else if (strcmp(command, "exit") == 0)
         {
             printf("Goodbye!\n");
             break;
         }
-        else if (scanf("%s", city2) == 1)
+        else if (strcmp(command, "print") == 0) // 'hidden command for debugging
         {
-            strcpy(city1, command);
-            // scanf("%s", city2);
-            printf("city1: %s; city2: %s\n", city1, city2);
+            printGraph(graph);
         }
         else
         {
-            printf("Invalid Command\n");
+            int src = findCity(graph, command);
+            if (src == -1)
+            {
+                printf("Invalid Command\n");
+                continue;
+            }
+            scanf("%s", city2);
+            int dest = findCity(graph, city2);
+            if (dest == -1)
+            {
+                printf("Invalid command\n");
+                continue;
+            }
+
+            dijkstra(graph, src, dest); // find the shortest path by Dijkstra's algorithm
         }
     }
 
