@@ -9,6 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/main",
+            "preLaunchTask": "",
             "args": [
                 "3",
                 "2"
