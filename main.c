@@ -6,6 +6,7 @@
 
 void help()
 {
+    printf("*****Welcome to the shortest path finder!******\n");
     printf("Commands: \n");
     printf(" list - list all cities)\n");
     printf(" <city1> <city2> - find the shortest path between two cities\n");
@@ -13,15 +14,16 @@ void help()
     printf(" exit - exit the program\n");
     printf("*******************************************************\n");
 }
+
 /**
- *
+ * The entrance of the program
  * @param argc
  * @param argv
  * @return int
  */
 int main(int argc, char *argv[])
 {
-    char city1[20], city2[20];
+    char city2[50];
 
     if (argc != 3)
     {
@@ -29,39 +31,64 @@ int main(int argc, char *argv[])
         exit(0);
     }
 
+    // create the graph
+    Graph *graph = createGraph();
+
+    // load data from files to initialize the graph
+    loadVertices(graph, argv[1]);
+    loadEdges(graph, argv[2]);
+
+    // print the graph, just for debugging
+    printGraph(graph);
+
     while (1)
     {
-        printf("*****Welcome to the shortest path finder!******\n");
         help();
-        printf("Where do you want to go today? what do i do? "); 
+        printf("Where do you want to go today? what do i do? ");
 
-        char command[30];
+        char command[100];
         scanf("%s", command);
 
         if (strcmp(command, "list") == 0)
         {
-            printf("Open command\n");
+            listCity(graph);
+            printf("\n");
         }
         else if (strcmp(command, "help") == 0)
         {
-            help();
+            continue;
         }
         else if (strcmp(command, "exit") == 0)
         {
             printf("Goodbye!\n");
-            break;
-        }
-        else if (scanf("%s", city2) == 1)
-        {
-            strcpy(city1, command);
-            // scanf("%s", city2);
-            printf("city1: %s; city2: %s\n", city1, city2);
+            freeGraph(graph);
+            exit(0);
         }
         else
         {
-            printf("Invalid Command\n");
+            int src = findCity(graph, command);
+            if (src == -1)
+            {
+                printf("Invalid Command\n");
+            }
+            else
+            {
+                scanf("%s", city2);
+                int dest = findCity(graph, city2);
+
+                if (dest == -1)
+                {
+                    printf("Invalid Command\n");
+                }
+                else
+                {
+                    dijkstra(graph, src, dest);
+                }
+            }
         }
     }
+
+    freeGraph(graph);
 
     return 0;
 }
