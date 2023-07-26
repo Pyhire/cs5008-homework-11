@@ -44,3 +44,4 @@ Did you use any external resources (you do not have to cite in class material)? 
 
 ---
 Note: we are having you explore TSP, so you can see the terms used for problem classification that you will also explore in more depth in 5800. You will not be asked to know about TSP outside of this assignment or even problem classification. Computer Science is often about dealing with problems considered "too hard" or "impossible", and finding ways to make them possible! As such, knowing topics such as N, NP, NP-Complete, etc. is important to understand the limits (to break).
+
