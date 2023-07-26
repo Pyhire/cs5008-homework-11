@@ -118,21 +118,25 @@ void dijkstra(Graph *graph, int src, int dest)
         }
     }
 
+    printf("Path Found...\n");
+
     // Print the shortest path from src to dest
     printPath(graph, src, dest);
+
+    printf("\nTotal Distance: %d\n", 100); // TODO
 }
 
 void printPath(Graph *graph, int src, int dest)
 {
     if (dest == src)
     {
-        printf("%s ", graph->vertices[src]->name);
+        printf("%s\n", graph->vertices[src]->name);
         return;
     }
 
     printPath(graph, src, graph->vertices[dest]->prev);
 
-    printf("-> %s ", graph->vertices[dest]->name);
+    printf("%s \n", graph->vertices[dest]->name);
 }
 
 Vertex *createVertex(int id, char *name)
