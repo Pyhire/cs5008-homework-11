@@ -134,7 +134,7 @@ This is a two week assignment!
      * Each function is (mostly) single purpose.
      * Proper use of DEFINE for constants.
      * Makes use of .h header files in addition to .c files.
-     * Uses Dykstra's algorithm to find the shortest path. 
+     * Uses Dikstra's algorithm to find the shortest path. 
      * Test Files are included/obvious code was tested before submission.
 4. Exceeds  (MG)
    * Questions asked in README.md are answered.

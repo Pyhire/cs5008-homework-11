@@ -1,28 +1,28 @@
 #include "my_matrix.h"
 #include <limits.h>
 
-int **create_graph(int city_count)
-{
-    // Allocate memory for the adjacency matrix
-    int **graph = malloc(city_count * sizeof(int *));
-    for (int i = 0; i < city_count; i++)
-    {
-        graph[i] = malloc(city_count * sizeof(int));
-        for (int j = 0; j < city_count; j++)
-        {
-            // Initialize all distances to infinity
-            graph[i][j] = INT_MAX;
-        }
-    }
-    return graph;
-}
+// int **create_graph(int city_count)
+// {
+//     // Allocate memory for the adjacency matrix
+//     int **graph = malloc(city_count * sizeof(int *));
+//     for (int i = 0; i < city_count; i++)
+//     {
+//         graph[i] = malloc(city_count * sizeof(int));
+//         for (int j = 0; j < city_count; j++)
+//         {
+//             // Initialize all distances to infinity
+//             graph[i][j] = INT_MAX;
+//         }
+//     }
+//     return graph;
+// }
 
-void add_edge(int **graph, int city1, int city2, int distance)
-{
-    // Add the edge in both directions (since this is an undirected graph)
-    graph[city1][city2] = distance;
-    graph[city2][city1] = distance;
-}
+// void add_edge(int **graph, int city1, int city2, int distance)
+// {
+//     // Add the edge in both directions (since this is an undirected graph)
+//     graph[city1][city2] = distance;
+//     graph[city2][city1] = distance;
+// }
 
 int *dijkstra(int **graph, int city_count, int start_node, int **predecessors)
 {
