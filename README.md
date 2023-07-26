@@ -1,5 +1,12 @@
 # Finding The Shortest Distance
 
+
+## git branch:
+- main: 没有完全实现的版本
+- v1: Edge List 实现；
+- v2: matrix 实现；
+
+
 Name:
 
 Github Account name: 
